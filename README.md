@@ -42,3 +42,32 @@
 
  
 </h4>
+
+الكود المصدري:
+```
+x="""
+ مُحَمَّدُ بْنُ بَشَّارٍ ، حَدَّثَنَا ابْنُ مَهْدِيٍّ ، حَدَّثَنَا سُفْيَانُ ، عَنْ أَبِي إِسْحَاقَ ، عَنْ أَبِي بُرْدَةَ ، عَنِ النَّبِيِّ
+"""
+
+
+char = ["َ", "ُ", "ِ", "ُ", "ْ","ٌ","ٍ", "ّ",":"]
+for i in char:
+  x = x.replace(i , "")
+
+char2 = ["،"]
+for i in char2:
+  x = x.replace(i , "\n")
+
+words = x.split(" ")
+for word in words:
+  if word in ["عن","حدثنا","أخبرنا","أن","أنه","يخبر","قال","أخبرني","قالا","يحدث","يخبر","سمع","نا","ثنا","أنا","أنبأنا","أنبأني","سمعت","نبأنا","نبأني","أنبا","نبا","قالوا","جميعا","حدثني","قالت"]:
+    x = x.replace(word, "")
+
+lines = x.split("\n")
+lines = [line.strip() for line in lines]
+lines_with_tabs = [("\t" * index) + line for index, line in enumerate(lines, start=0)]
+
+x = "\n".join(lines_with_tabs)
+
+print(x.strip())
+```
